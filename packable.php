@@ -42,13 +42,13 @@ abstract class Packable
 
     public static function pack_str($str)
     {
-        $len = Packable::pack_u16(strlen($str));
+        $len = self::pack_u16(strlen($str));
         return $len . $str;
     }
 
     public static function unpack_str($data, &$pos)
     {
-        $len = Packable::unpack_u16($data, $pos);
+        $len = self::unpack_u16($data, $pos);
         $str = substr($data, $pos, $len);
         $pos += $len;
         return $str;
@@ -56,7 +56,7 @@ abstract class Packable
 
     public static function add_length($data)
     {
-        $len = Packable::pack_u16(strlen($data) + 2);
+        $len = self::pack_u16(strlen($data) + 2);
         return $len . $data;
     }
 }
